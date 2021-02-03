@@ -19,16 +19,80 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
 					<a class="nav-link" href="./setores.html">Setores</a>
-					<a class="nav-link" href="./novo-funcionario.html">Funcionario</a>
 				</div>
 			</div>
 		</div>
 	</nav>
-	<p>setores</p>
+	<div id="setores" class="container justify-content-center p-3 mb-2 bg-secondary text-white">
+		<div v-if="editar">
+			<div class="container justify-content-center">
+				<div class="cols-12">
+
+				</div>
+				<div class="container justify-content-center p-3 mb-2 bg-secondary text-white">
+					<div v-if="setorEdicao.id == null">
+						<h3>Inserir setor</h3>
+					</div>
+					<div v-else>
+						<h3 class="card-title">Edição de setor</h3>
+					</div>
+					<div class="input-group input-group-sm mb-3">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
+						<input type="text" class="form-control" v-model="setorEdicao.nome"
+							aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+					</div>
+					<div class="col-12" style="display: flex;">
+						<div style="text-align: left;" class="col-6">
+							<button @click="insertUpdate()" type="button"
+								class="btn btn-success justify-content-end">Enviar</button>
+						</div>
+						<div style="text-align: right;" class="col-6">
+							<button @click="cancelar()" type="button"
+								class="btn btn-warning justify-content-end">Cancelar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid justify-content" v-else>
+			<div style="display: flex; margin-bottom: 2em;">
+				<div style="text-align: left;" class="col-6">
+					<h4 class="center-aling">Lista dos Setores</h4>
+				</div>
+				<div style="text-align: right;" class="col-6">
+					<button @click="visualizarEdicao({})" type="button"
+						class="btn btn-success justify-content-end">Novo</button>
+				</div>
+			</div>
+			<table class="table table-dark table-sm">
+				<thead>
+					<tr>
+						<th scope="col" v-for="header in listaSetoresHeader">{{ header.label }}</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="setor in listaSetores" scope="row">
+						<td>{{ setor.nome }}</td>
+						<td>
+							<button @click="visualizarEdicao(setor)" type="button"
+								class="btn btn-warning">Editar</button>
+						</td>
+						<td>
+							<button type="button" class="btn btn-danger"
+								@click="removeSetor(setor)">Apagar</button>
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
 	<script src="../resources/js/vue.js"></script>
 	<script src="../resources/js/axios.min.js"></script>
-	<script src="../resources/js/cadastro-de-funcionario.js"></script>
+	<script src="../resources/js/setores.js"></script>
 </body>
 
 </html>

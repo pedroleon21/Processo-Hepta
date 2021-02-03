@@ -78,6 +78,7 @@ public class SetorDAO{
 			em.getTransaction().begin();
 			em.remove(
 					em.find(Setor.class, id));
+			em.getTransaction().commit();
 		}catch(Exception e) {
 			em.getTransaction().rollback();
 			throw new Exception(e);

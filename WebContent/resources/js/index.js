@@ -76,15 +76,5 @@ var inicio = new Vue({
 		cancelar: function () {
 			this.editar = false;
 		}
-	},
-	computed: {
-		opcaoSetores: function () {
-			return this.listaSetores.map(i => {
-				return {
-					value: i,
-					text: i.nome
-				}
-			})
-		}
 	}
 });

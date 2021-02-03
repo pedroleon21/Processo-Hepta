@@ -53,16 +53,14 @@
 							aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 					</div>
 					<div class="input-group input-group-sm mb-3">
-						<span class="input-group-text"
-							id="inputGroup-sizing-sm">Email</span>
-						<input v-model="funcionarioEdicao.email" type="text" class="form-control" aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-sm">
+						<span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+						<input v-model="funcionarioEdicao.email" type="text" class="form-control"
+							aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 					</div>
 					<div class="input-group mb-3">
 						<select v-model="funcionarioEdicao.setor" class="form-select" id="inputGroupSelect02">
 							<option selected>Escolha...</option>
-							<option v-for="setor in listaSetores" v-bind:value="setor"
-							>{{ setor.nome }}</option>
+							<option v-for="setor in listaSetores" v-bind:value="setor">{{ setor.nome }}</option>
 						</select>
 						<label class="input-group-text" for="inputGroupSelect02">Opções</label>
 					</div>
@@ -117,12 +115,14 @@
 				</tbody>
 			</table>
 		</div>
-		<script src="resources/js/vue.js"></script>
-		<script src="resources/js/axios.min.js"></script>
-		<script src="resources/js/index.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-			crossorigin="anonymous"></script>
+	</div>
+
+	<script src="resources/js/vue.js"></script>
+	<script src="resources/js/axios.min.js"></script>
+	<script src="resources/js/index.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>

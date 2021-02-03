@@ -85,7 +85,11 @@ public class SetorService {
 	@DELETE
 	public Response remove(@PathParam("id") Integer id) {
 		try {
-			dao.delete(id);
+			if(Objects.isNull(dao.find(id))) {
+				return Response.status(Status.NOT_FOUND).build();
+			}else {
+				dao.delete(id);
+			}
 		}catch(Exception e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
