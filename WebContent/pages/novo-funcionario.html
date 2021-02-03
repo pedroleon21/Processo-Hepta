@@ -3,26 +3,72 @@
 
 <head>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" href="../favicon.ico"/>
-	<title>Cadastrar um novo Produto </title>
-	<link rel="stylesheet" type="text/css"
-		href="../resources/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="../favicon.ico" />
+	<title>Cadastrar um novo funcionario</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light p-3 mb-2 bg-dark text-white">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="./../">Home</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link" href="./setores.html">Setores</a>
+					<a class="nav-link" href="./novo-funcionario.html">Funcionario</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div id="inicio" class="container justify-content-center">
+		<p>{{ mensagem }}</p>
 
-<a href="/funcionarios/index.html">Voltar</a>
+		<h4  class="card-title">Cadastro de funcionário</h4>
+		<div class="container justify-content-center p-3 mb-2 bg-secondary text-white">
+			<h3>Inserir funcionario</h3>
+			<div class="input-group input-group-sm mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
+				<input type="text" class="form-control" v-model="nome" aria-label="Sizing example input"
+					aria-describedby="inputGroup-sizing-sm">
+			</div>
+			<div class="input-group mb-3">
+				<select class="form-select" id="inputGroupSelect02">
+					<option selected>Escolha...</option>
+					<option v-for="setor in listaSetores">{{ setor.nome }}</option>
+				</select>
+				<label class="input-group-text" for="inputGroupSelect02">Opções</label>
+			</div>
+			<div class="input-group input-group-sm mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
+				<input type="text" class="form-control" aria-label="Sizing example input"
+					aria-describedby="inputGroup-sizing-sm">
+			</div>
+			<div class="input-group input-group-sm mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
+				<input type="text" class="form-control" aria-label="Sizing example input"
+					aria-describedby="inputGroup-sizing-sm">
+			</div>
+			<div class="input-group input-group-sm mb-3">
+				<span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
+				<input type="text" class="form-control" aria-label="Sizing example input"
+					aria-describedby="inputGroup-sizing-sm">
+			</div>
+			<input type="submit">
+		</div>
+	</div>
 
-<div id="app">
-	<p>{{mensagem}}</p>
-	
-	<h4>Cadastro de funcionário</h4>
-		
-	<p>Implementar o cadastro de funcionário</p>	
-</div>
 
 	<script src="../resources/js/vue.js"></script>
 	<script src="../resources/js/axios.min.js"></script>
 	<script src="../resources/js/cadastro-de-funcionario.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+		crossorigin="anonymous"></script>
 </body>
+
 </html>

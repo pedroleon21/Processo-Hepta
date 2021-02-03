@@ -62,7 +62,7 @@ public class SetorService {
 		}catch(Exception e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
-		return Response.status(Status.OK).build();
+		return Response.status(Status.CREATED).build();
 	}
 	
 	@Path("/{id}")
