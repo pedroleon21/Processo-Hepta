@@ -25,11 +25,9 @@
 
 	Crud Completo.
 	Paginas:
-		- Home ("/funcionarios/")
-		- Novo Funcionarios ("/funcionarios/pages/novo-funcionario.html")
+		- Controle de Funcionarios ("/funcionarios/")
 		- Controle de Setores ("/funcionarios/pages/setores.html")
 
 # Obstaculos:
 
 	- O caditado não sabe fazer teste de integridade ou teste unitario e não conseguiu estudar para implementar em tempo hábil.
-	- O Caditado não tem conhecimento o suficiente de tomcat  para fazer corretamente o direcionamento para o correto funcionamento do VueJS como SPA.

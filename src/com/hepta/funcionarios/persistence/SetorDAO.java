@@ -58,7 +58,7 @@ public class SetorDAO{
 
 	public List<Setor> getAll() throws Exception {
 		EntityManager em = HibernateUtil.getEntityManager();
-		List<Setor> listaSetor = new ArrayList<Setor>();
+		List<Setor> listaSetor = new ArrayList<>();
 		try {
 			em.getTransaction().begin();
 			listaSetor = em

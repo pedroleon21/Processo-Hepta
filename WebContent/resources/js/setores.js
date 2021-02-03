@@ -18,19 +18,16 @@ var setores = new Vue({
 	},
 	methods: {
 		insertUpdate: function () {	
-			debugger;
 			if(this.setorEdicao.id){
 				axios.put("../rs/setor/"+this.setorEdicao.id,this.setorEdicao)
 				.then(resp => {
 					this.setorEdicao = {};
 					this.cancelar();
-					alert('Setor Atualizado!');
 					this.buscaSetores();
 				});
 			}else{
 				axios.post("../rs/setor",this.setorEdicao)
 				.then( resp => {
-					alert("Novo setor inserido!");
 					this.cancelar();
 					this.buscaSetores();
 					this.setorEdicao = {};
@@ -57,6 +54,7 @@ var setores = new Vue({
 		},
 		cancelar: function () {
 			this.editar = false;
+			this.buscaSetores();
 		}
 	}
 });

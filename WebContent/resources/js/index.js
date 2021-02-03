@@ -2,6 +2,9 @@
 var inicio = new Vue({
 	el: "#inicio",
 	data: {
+		msg : '',
+		inserindo: false,
+		statusResponse: false,
 		funcionarioEdicao: {
 			id: null,
 			nome: '',
@@ -24,27 +27,34 @@ var inicio = new Vue({
 	},
 	created: function () {
 		let vm = this;
+		vm.buscaSetores();
 		vm.buscaFuncionarios();
 	},
 	methods: {
-		insertUpdate: function () {	
-			debugger;
-			if(this.funcionarioEdicao.id){
-				axios.put("./rs/funcionarios/"+this.funcionarioEdicao.id,this.funcionarioEdicao)
-				.then(resp => {
-					this.funcionarioEdicao = {};
-					this.cancelar();
-					alert('Funcionario Atualizado!');
-					this.buscaFuncionarios();
-				});
-			}else{
-				axios.post("./rs/funcionarios",this.funcionarioEdicao)
-				.then( resp => {
-					alert("Novo funcionario inserido!");
-					this.cancelar();
-					this.buscaFuncionarios();
-					this.funcionarioEdicao = {};
-				});
+		insertUpdate: function () {
+			if (this.funcionarioEdicao.id) {
+				axios.put("./rs/funcionarios/" + this.funcionarioEdicao.id, this.funcionarioEdicao)
+					.then(resp => {
+						this.funcionarioEdicao = {};
+						this.mudancaEstado(false,"Editado")
+						this.buscaFuncionarios();
+						this.cancelar();
+					}).catch( resp =>{
+						this.funcionarioEdicao = {};
+						this.mudancaEstado(true,"editar")
+						this.cancelar();
+					});
+			} else {
+				axios.post("./rs/funcionarios", this.funcionarioEdicao)
+					.then(resp => {
+						this.mudancaEstado(false, "Inserido");
+						this.funcionarioEdicao = {};
+						this.cancelar();
+					}).catch(resp =>{
+						this.mudancaEstado(true, "inserir");
+						this.funcionarioEdicao = {};
+						this.cancelar();
+					});
 			}
 		},
 		buscaFuncionarios: function () {
@@ -57,8 +67,14 @@ var inicio = new Vue({
 		},
 		removeFuncionario: function (funcionario) {
 			axios.delete('./rs/funcionarios/' + funcionario.id)
-				.then(resp => this.buscaFuncionarios())
-				.catch(err => console.error(err));
+				.then(resp => {
+					this.buscaFuncionarios();
+					this.mudancaEstado(false,"Removeu");
+				})
+				.catch(err => {
+					this.mudancaEstado(true,"remoção");
+					console.error(err);
+				});
 		},
 		visualizarEdicao: function (funcionario) {
 			this.editar = true;
@@ -67,14 +83,25 @@ var inicio = new Vue({
 		},
 		buscaSetores: function () {
 			axios.get("./rs/setor")
-				.then(response => this.listaSetores = response.data)
+				.then(response => {
+					this.listaSetores = response.data;
+				})
 				.catch(function (error) {
 					console.error("Erro interno. Não foi listar Setores");
 				});
-			console.log(this.listaSetores);
 		},
 		cancelar: function () {
 			this.editar = false;
+			this.buscaFuncionarios();// pode onerar o servidor
+		},
+		mudancaEstado: function (status , msg) {
+			Obj = this.inserindo;
+			this.inserindo = true;
+			this.statusResponse = status;
+			this.msg = msg;
+			setTimeout(function(Obj){
+				Obj = false;
+			}, 4000);
 		}
 	}
 });
